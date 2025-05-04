@@ -1,75 +1,92 @@
-print(r'''
-*******************************************************************************
-          |                   |                  |                     |
- _________|________________.=""_;=.______________|_____________________|_______
-|                   |  ,-"_,=""     `"=.|                  |
-|___________________|__"=._o`"-._        `"=.______________|___________________
-          |                `"=._o`"=._      _`"=._                     |
- _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
-|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
-|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
-          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
- _________|___________| ;`-.o`"=._; ." ` '`."\ ` . "-._ /_______________|_______
-|                   | |o ;    `"-.o`"=._``  '` " ,__.--o;   |
-|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
-____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
-/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
-____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
-/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
-____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
-/______/______/______/______/______/______/______/______/______/______/_____ /
-*******************************************************************************
-''')
-print("Welcome to Treasure Island.")
-print("Your mission is to find the treasure.")
-choice1=input("Your're at the cross road. "
-                 "Where do you want to go?"
-                 " Type \"left\" or  \"right\"").lower()
-if choice1 == "left":
-    choice2 = input("You've come to a lake."
-                       " There is an island in the middle of the lake."
-                       "Type \"wait\" to wait for a boat."
-                       "Type \"swim\" to swim across.").lower()
-    if choice2 == "wait" :
-        choice3 = input("You arrive at the island unharmed. "
-                        "There is a house with 3 door."
-                        "one red, one yellow and one blue. "
-                        "Which colour do you choose?").lower()
-        if choice3 == "red" :
-            print("It's a room full of fire. Game Over.")
-        elif choice3 == "yellow" :
-            print("You found the treasure! You Win!")
-        else:
-            print("You enter a room of beasts. Game Over. ")
-    else:
-        print("You get attacked by an angry trout. Game Over.")
-else:
-    print("You fell into a hole. Game Over.")
+import random
 
-# the line if choice1 =="left" or "LEFT:,this "LEFT" is always a True because this is an empty string this doesn't assignment to any choice.
-# the correct statement is choice1 == "left" or choice1 == "LEFT":, then only it check both left, LEFT.
-print("Welcome to Treasure Island.")
-print("Your mission is to find the treasure.")
-choice1=input("Your're at the cross road. "
-                 "Where do you want to go?"
-                 " Type \"left\" or  \"right\"")
-if choice1 == "left" or choice1== "LEFT":
-    choice2 = input("You've come to a lake."
-                       " There is an island in the middle of the lake."
-                       "Type \"wait\" to wait for a boat."
-                       "Type \"swim\" to swim across.")
-    if choice2 == "wait" or choice2 == "WAIT" :
-        choice3 = input("You arrive at the island unharmed. "
-                        "There is a house with 3 door."
-                        "one red, one yellow and one blue. "
-                        "Which colour do you choose?")
-        if choice3 == "red" or choice3 =="RED":
-            print("It's a room full of fire. Game Over.")
-        elif choice3 == "yellow" or choice3 =="YELLOW" :
-            print("You found the treasure! You Win!")
-        else:
-            print("You enter a room of beasts. Game Over. ")
-    else:
-        print("You get attacked by an angry trout. Game Over.")
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+# arrange the values in list
+rps = [rock,paper,scissors]
+# create a user input space
+user_value = int(input("Enter the value like 0 Rock ,1 paper ,2 scissors \n"))
+if user_value < 0 or user_value > 2:
+    print("YOu enter a invalid number. Game Over. You lose")
 else:
-    print("You fell into a hole. Game Over.")
+    uv=[]
+    if user_value == 0:
+        uv.append(rps[0])
+        print(rock)
+        print("Rock")
+    elif user_value == 1:
+        uv.append(rps[1])
+        print(paper)
+        print("paper")
+    else:
+        uv.append(rps[2])
+        print(scissors)
+        print("scissors")
+# create a random output for the computer
+    cg = random.choice(rps)
+    print(cg)
+    co = list()
+    co.append(cg)
+    if uv[0] == rock and co[0] == scissors :
+        print("You win")
+    elif uv[0] ==paper and co[0] == scissors:
+        print("You lose")
+    elif uv[0] == rock and co[0] == paper:
+        print("You lose")
+    elif uv[0] == paper and co[0] == rock:
+        print("You win")
+    elif uv[0] == scissors and co[0] == rock:
+        print("You lose")
+    elif uv[0] == scissors and co[0] == paper :
+        print("You win")
+    else:
+        print("Draw")
+
+# other ways
+
+user_value1 = int(input("Enter the value like 0 Rock ,1 paper ,2 scissors \n"))
+if user_value1 < 0 or user_value1 > 2:
+    print("YOu enter a invalid number. Game Over. You lose")
+print(rps[user_value1])
+computer_choice = random.randint(0,2)
+print("Computer choice:")
+print(rps[computer_choice])
+
+if user_value1 == computer_choice:
+    print("Draw")
+elif computer_choice == 2 and user_value1 == 0:
+    print("You win")
+elif computer_choice < user_value1:
+    print("You loss")
+elif user_value1 < computer_choice:
+    print("You win")
+elif user_value1 == 0 and computer_choice == 2:
+    print("You loss")
+
+
+
+
